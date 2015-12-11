@@ -64,7 +64,7 @@ class ValidateCouponEventListenerTest extends AbstractCartCouponEventListenerTes
     /**
      * Test duplicated coupons with non usable coupon.
      *
-     * @expectedException \Elcodi\Component\Coupon\Exception\CouponAppliedException
+     * @expectedException \Doctrine\DBAL\Exception\DriverException
      */
     public function testDuplicatedCouponNotUsable()
     {

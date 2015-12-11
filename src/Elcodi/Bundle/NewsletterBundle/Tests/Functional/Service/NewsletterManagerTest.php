@@ -193,7 +193,7 @@ class NewsletterManagerTest extends WebTestCase
     /**
      * Test subscribe.
      *
-     * @expectedException \Elcodi\Component\Newsletter\Exception\NewsletterCannotBeRemovedException
+     * @expectedException \Doctrine\DBAL\Exception\DriverException
      */
     public function testUnsubscribeMissing()
     {
