@@ -164,6 +164,13 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
         ]));
 
         static::$application->run(new ArrayInput([
+            'command' => 'doctrine:schema:drop',
+            '--no-interaction' => true,
+            '--force' => true,
+            '--quiet' => true,
+        ]));
+
+        static::$application->run(new ArrayInput([
             'command' => 'doctrine:schema:create',
             '--no-interaction' => true,
             '--quiet' => true,
