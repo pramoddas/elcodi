@@ -17,6 +17,8 @@
 
 namespace Elcodi\Bundle\EntityTranslatorBundle\Tests\Functional\Services;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
 use Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct;
 
@@ -49,7 +51,11 @@ class TranslatorTest extends WebTestCase
             ->setLocale('es')
             ->setTranslation('nombre del producto');
 
-        $this->flush($translation);
+        try {
+            $this->flush($translation);
+        } catch (UniqueConstraintViolationException $exception) {
+            // if it's already in the database, don't reinsert it
+        }
 
         $this
             ->get('elcodi.event_dispatcher.entity_translator')
@@ -83,7 +89,11 @@ class TranslatorTest extends WebTestCase
             ->setLocale('es')
             ->setTranslation('nombre del producto');
 
-        $this->flush($translation);
+        try {
+            $this->flush($translation);
+        } catch (UniqueConstraintViolationException $exception) {
+            // if it's already in the database, don't reinsert it
+        }
 
         $this
             ->get('elcodi.event_dispatcher.entity_translator')
